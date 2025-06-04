@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juego Matemático | UNINORTE</title>
+  <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../style/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:700,500,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style/juego.css">
+</head>
+<body>
+  <!-- Fondo animado -->
+  <div class="fondo-animado">
+    <div class="burbuja b1"></div>
+    <div class="burbuja b2"></div>
+    <div class="burbuja b3"></div>
+    <div class="burbuja b4"></div>
+    <div class="burbuja b5"></div>
+  </div>
+
+  <!-- Pantalla de presentación -->
+  <div id="pantalla-presentacion">
+    <div class="card-presentacion">
+      <span class="icono-math">🧮</span>
+      <div class="titulo-juego">Desafío Matemático</div>
+      <div class="instrucciones">
+        <b>¡Bienvenido!</b><br>
+        Pon a prueba tu mente resolviendo ecuaciones.<br>
+        <ul style="text-align:left; margin: 1rem auto 1rem 1.5rem; color:#003366;">
+          <li>Selecciona el tipo de operación matemática.</li>
+          <li>Resuelve para <b>x</b> la ecuación que aparece.</li>
+          <li>Recibe pistas si te equivocas.</li>
+          <li>¡Compite contigo mismo y mejora tus intentos!</li>
+        </ul>
+        <span style="color:#0d6efd;">¿Listo para comenzar?</span>
+      </div>
+      <button class="btn btn-empezar" onclick="iniciarJuego()">¡Empezar!</button>
+    </div>
+  </div>
+
+  <!-- Navbar simple -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">
+        <span class="text-primary">UNINORTE</span> | Juego Matemático
+      </a>
+    
+      <div class="collapse navbar-collapse" id="menuNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Juego -->
+  <main>
+    <div class="juego-card shadow-lg" style="display:none;" id="juego-main">
+      <span class="icono-math text-center mb-2">🧮</span>
+      <div class="titulo-juego text-center mb-2">Desafío Matemático</div>
+      <div class="subtitulo-juego text-center mb-3">¡Resuelve para <b>x</b> la ecuación que aparece!</div>
+      <label for="tipoOperacion" class="mb-1">Tipo de operación:</label>
+      <select id="tipoOperacion" class="select-op w-100 mb-3" onchange="mostrarEcuacion()">
+        <option value="aleatorio">Aleatorio</option>
+        <option value="cuadratica">Cuadrática</option>
+        <option value="lineal">Lineal</option>
+        <option value="multiplicacion">Multiplicación</option>
+        <option value="division">División</option>
+      </select>
+      <div id="juegoEnunciado" class="enunciado text-center mb-3"></div>
+      <input type="number" id="guessInput" class="form-control mb-2" placeholder="Tu respuesta para x" autocomplete="off">
+      <button class="btn btn-primary w-100" onclick="adivinaNumero()">Comprobar</button>
+      <div id="gameResult" class="result text-center"></div>
+      <button class="btn btn-secondary w-100" onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
+  </main>
+
+  <script src="../script/juego.js"></script>
+  <script>
+    // Pantalla de presentación y transición espectacular
+    function iniciarJuego() {
+      const presentacion = document.getElementById('pantalla-presentacion');
+      const juego = document.getElementById('juego-main');
+      presentacion.style.animation = "fadeOut 0.8s forwards";
+      setTimeout(() => {
+        presentacion.style.display = "none";
+        juego.style.display = "block";
+        juego.style.animation = "fadeInDown 1s";
+        document.getElementById('guessInput').focus();
+      }, 800);
+    }
+    // Animación de salida
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fadeOut {
+        from { opacity: 1;}
+        to { opacity: 0;}
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
