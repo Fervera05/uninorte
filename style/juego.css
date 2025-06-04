@@ -1,0 +1,320 @@
+body {
+      background: radial-gradient(circle at 70% 20%, #6d83f3 0%, #0d6efd 60%, #003366 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    /* Fondo animado con burbujas y destellos */
+    .fondo-animado {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .burbuja {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      animation: flotar 12s linear infinite;
+      background: linear-gradient(135deg, #6d83f3 60%, #0d6efd 100%);
+      filter: blur(1px);
+    }
+    .burbuja.b1 { width: 120px; height: 120px; left: 10vw; top: 80vh; animation-delay: 0s;}
+    .burbuja.b2 { width: 80px; height: 80px; left: 70vw; top: 90vh; animation-delay: 2s;}
+    .burbuja.b3 { width: 60px; height: 60px; left: 50vw; top: 85vh; animation-delay: 4s;}
+    .burbuja.b4 { width: 100px; height: 100px; left: 80vw; top: 95vh; animation-delay: 6s;}
+    .burbuja.b5 { width: 90px; height: 90px; left: 30vw; top: 92vh; animation-delay: 8s;}
+    @keyframes flotar {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-110vh);}
+    }
+    /* Efecto de destello */
+    .fondo-animado::after {
+      content: "";
+      position: absolute;
+      left: 60vw; top: 10vh;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, #fff 0%, transparent 80%);
+      opacity: 0.07;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+    /* Tarjeta del juego */
+    .juego-card {
+      background: rgba(255,255,255,0.98);
+      border-radius: 32px;
+      box-shadow: 0 16px 64px 0 rgba(13,110,253,0.22), 0 2px 24px rgba(0,0,0,0.13);
+      padding: 3.2rem 2.2rem 2.2rem 2.2rem;
+      max-width: 500px;
+      margin: 80px auto 0 auto;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #bfc9d1;
+      animation: fadeInDown 1s;
+      z-index: 2;
+      backdrop-filter: blur(2px);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .juego-card:hover {
+      box-shadow: 0 24px 80px 0 #6d83f3, 0 2px 24px rgba(0,0,0,0.18);
+      transform: scale(1.015) translateY(-4px);
+    }
+    .juego-card::before {
+      content: "";
+      position: absolute;
+      top: -80px; left: 60%;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, #6d83f3 0%, transparent 80%);
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .juego-card::after {
+      content: "";
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, #0d6efd 0%, transparent 80%);
+      opacity: 0.13;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* Título y subtítulo */
+    .titulo-juego {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #003366;
+      margin-bottom: 1.1rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 16px #bfc9d1, 0 0 18px #6d83f3;
+      background: linear-gradient(90deg, #0d6efd 40%, #6d83f3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glowTitle 2.5s infinite alternate;
+    }
+    @keyframes glowTitle {
+      0% { text-shadow: 0 2px 16px #bfc9d1, 0 0 18px #6d83f3; }
+      100% { text-shadow: 0 4px 32px #6d83f3, 0 0 32px #0d6efd; }
+    }
+    .subtitulo-juego {
+      font-size: 1.18rem;
+      color: #0d6efd;
+      margin-bottom: 1.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 8px #bfc9d1;
+    }
+    /* Icono animado */
+    .icono-math {
+      font-size: 2.7rem;
+      color: #0d6efd;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 2px 12px #bfc9d1;
+      display: block;
+      animation: pulseMath 1.5s infinite alternate;
+    }
+    @keyframes pulseMath {
+      0% { transform: scale(1);}
+      100% { transform: scale(1.13);}
+    }
+    /* Inputs y select */
+    .juego-card label {
+      font-weight: 700;
+      color: #003366;
+      letter-spacing: 0.5px;
+    }
+    .juego-card input[type="number"] {
+      font-size: 1.25rem;
+      text-align: center;
+      border-radius: 16px;
+      border: 2px solid #bfc9d1;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.07);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #f4f6fa;
+    }
+    .juego-card input[type="number"]:focus {
+      border-color: #0d6efd;
+      outline: none;
+      box-shadow: 0 0 0 0.2rem #6d83f3;
+    }
+    .juego-card .select-op {
+      margin-bottom: 1.2rem;
+      border-radius: 14px;
+      font-size: 1.13rem;
+      font-weight: 700;
+      border: 2px solid #bfc9d1;
+      color: #003366;
+      background: #f4f6fa;
+      padding: 0.5rem 0.8rem;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+    .juego-card .select-op:focus {
+      border-color: #0d6efd;
+      outline: none;
+    }
+    /* Botones */
+    .juego-card .btn-primary {
+      font-size: 1.18rem;
+      font-weight: 800;
+      border-radius: 16px;
+      margin-bottom: 0.7rem;
+      background: linear-gradient(90deg, #0d6efd 60%, #6d83f3 100%);
+      border: none;
+      box-shadow: 0 2px 16px rgba(0,234,255,0.13);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 1px;
+    }
+    .juego-card .btn-primary:hover {
+      background: linear-gradient(90deg, #6d83f3 60%, #003366 100%);
+      transform: scale(1.06);
+      box-shadow: 0 4px 32px #6d83f3;
+    }
+    .juego-card .btn-secondary {
+      border-radius: 16px;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      background: #e0e3ea;
+      color: #003366;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .juego-card .btn-secondary:hover {
+      background: #bfc9d1;
+      color: #0d6efd;
+    }
+    /* Enunciado y resultado */
+    .juego-card .enunciado {
+      font-size: 1.35rem;
+      color: #23272b;
+      margin-bottom: 1.1rem;
+      font-weight: 700;
+      min-height: 2.5rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 8px #e0e3ea;
+      z-index: 1;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .juego-card .result {
+      min-height: 2.5rem;
+      margin-top: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      z-index: 1;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .juego-card .result span {
+      font-size: 1.08rem;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .juego-card {
+        padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+        max-width: 98vw;
+        margin: 30px auto 0 auto;
+      }
+      .titulo-juego { font-size: 1.5rem; }
+      .enunciado { font-size: 1.05rem; }
+    }
+
+     /* Pantalla de presentación */
+    #pantalla-presentacion {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(circle at 70% 20%, #6d83f3 0%, #0d6efd 60%, #003366 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: fadeIn 1.2s;
+    }
+    #pantalla-presentacion .card-presentacion {
+      background: rgba(255,255,255,0.98);
+      border-radius: 32px;
+      box-shadow: 0 16px 64px 0 rgba(13,110,253,0.22), 0 2px 24px rgba(0,0,0,0.13);
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #bfc9d1;
+      animation: fadeInDown 1.2s;
+    }
+    #pantalla-presentacion .icono-math {
+      font-size: 3.2rem;
+      color: #0d6efd;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 2px 12px #bfc9d1;
+      display: block;
+      animation: pulseMath 1.5s infinite alternate;
+    }
+    #pantalla-presentacion .titulo-juego {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: #003366;
+      margin-bottom: 1.1rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 16px #bfc9d1, 0 0 18px #6d83f3;
+      background: linear-gradient(90deg, #0d6efd 40%, #6d83f3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glowTitle 2.5s infinite alternate;
+    }
+    #pantalla-presentacion .instrucciones {
+      font-size: 1.13rem;
+      color: #003366;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      text-shadow: 0 1px 8px #e0e3ea;
+    }
+    #pantalla-presentacion .btn-empezar {
+      font-size: 1.18rem;
+      font-weight: 800;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #0d6efd 60%, #6d83f3 100%);
+      border: none;
+      box-shadow: 0 2px 16px rgba(0,234,255,0.13);
+      color: #fff;
+      padding: 0.7rem 2.2rem;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: pulseMath 1.5s infinite alternate;
+    }
+    #pantalla-presentacion .btn-empezar:hover {
+      background: linear-gradient(90deg, #6d83f3 60%, #003366 100%);
+      transform: scale(1.06);
+      box-shadow: 0 4px 32px #6d83f3;
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes glowTitle {
+      0% { text-shadow: 0 2px 16px #bfc9d1, 0 0 18px #6d83f3; }
+      100% { text-shadow: 0 4px 32px #6d83f3, 0 0 32px #0d6efd; }
+    }
+    @keyframes pulseMath {
+      0% { transform: scale(1);}
+      100% { transform: scale(1.13);}
+    }
+    @media (max-width: 600px) {
+      #pantalla-presentacion .card-presentacion {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        max-width: 98vw;
+      }
+      #pantalla-presentacion .titulo-juego { font-size: 1.5rem; }
+    }
